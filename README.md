@@ -22,3 +22,13 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+# ChatSpace DB設計
+## usersテーブル
+
+|Columns|Type|Options|
+|-------|----|-------|
+|email|text|null: false|
+|password|text|null: false|
+|username|text|null: false|
