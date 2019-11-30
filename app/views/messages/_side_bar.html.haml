@@ -1,0 +1,26 @@
+.chat-side
+  .side-bar__user-name
+    .top-items
+      .top-items__name
+        abcd
+      %ul{class: "top-items__icons"}
+        %li
+          = link_to "#", class: "icon" do
+            = icon('fas', 'edit')
+        %li
+          = link_to "#", class: "icon" do
+            = icon('fas', 'cog')
+  .side-bar__group-list
+    .group
+      .group__group-name
+        A
+      .group__latest-message
+        メッセージはありません
+    .group
+      .group__group-name
+        B
+      .group__latest-message
+        メッセージはありません  
+      
+
+-# .top-items__icons
