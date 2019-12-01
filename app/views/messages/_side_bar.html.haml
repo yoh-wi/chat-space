@@ -1,0 +1,23 @@
+.chat-side
+  .chat-side__user
+    .chat-side__user__top-items
+      .chat-side__user__top-items__name
+        abcd
+      %ul.chat-side__user__top-items__icons
+        %li
+          = link_to "#", class: "icon" do
+            = icon('fas', 'edit')
+        %li
+          = link_to "#", class: "icon" do
+            = icon('fas', 'cog')
+  .chat-side__group-list
+    .chat-side__group-list__group
+      .chat-side__group-list__group__group-name
+        A
+      .chat-side__group-list__group__latest-message
+        メッセージはありません
+    .chat-side__group-list__group
+      .chat-side__group-list__group__group-name
+        A
+      .chat-side__group-list__group__latest-message
+        メッセージはありません

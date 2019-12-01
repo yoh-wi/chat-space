@@ -1,0 +1,34 @@
+.chat-main
+  .chat-main__header
+    .chat-main__header__left-box
+      .chat-main__header__left-box__current-group
+        Aグループ
+      .chat-main__header__left-box__member-list
+        メンバーたち
+    .chat-main__header__edit-btn
+      Edit
+  .chat-main__message-list
+    .chat-main__message-list__message
+      .chat-main__message-list__message__upper-info
+        .chat-main__message-list__message__upper-info__name
+          abcd
+        .chat-main__message-list__message__upper-info__date
+          2019/11/29 1:30:00
+      .chat-main__message-list__message__text
+        メッセージあります
+    .chat-main__message-list__message
+      .chat-main__message-list__message__upper-info
+        .chat-main__message-list__message__upper-info__name
+          abcd
+        .chat-main__message-list__message__upper-info__date
+          2019/11/29 1:30:00
+      .chat-main__message-list__message__text
+        メッセージください
+  .chat-main__message-form
+    .chat-main__message-form__new-message
+      .chat-main__message-form__new-message__input-box
+        %input{placeholder: "type a message", class: "chat-main__message-form__new-message__input-box__text"}
+        %label{class: "chat-main__message-form__new-message__input-box__image"}
+          = icon('far', 'image')
+          %input{type: "file"}
+      %input{type: "submit", value: "Send", class: "chat-main__message-form__new-message__submit-btn"}
