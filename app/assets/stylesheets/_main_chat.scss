@@ -65,13 +65,10 @@
   
   &__new-message {
     display: flex;
-    // align-items: center;
-    // justify-content: space-between;
     &__input-box {
       width: 100%;
       height: 50px;
       display: flex;
-      // justify-content: space-between;
       position: relative;
       &__text {
         width: 100%;
