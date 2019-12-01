@@ -15,7 +15,7 @@
         .chat-main__message-list__message__upper-info__date
           2019/11/29 1:30:00
       .chat-main__message-list__message__text
-        メッセージください
+        メッセージあります
     .chat-main__message-list__message
       .chat-main__message-list__message__upper-info
         .chat-main__message-list__message__upper-info__name
@@ -27,9 +27,10 @@
   .chat-main__message-form
     .chat-main__message-form__new-message
       .chat-main__message-form__new-message__input-box
-        .chat-main__message-form__new-message__input-box__text
-          ここに入力
-        .chat-main__message-form__new-message__input-box__img
-          画像添付
-      .chat-main__message-form__new-message__submit-btn
-        Send
+        -# .chat-main__message-form__new-message__input-box__text
+        %input{placeholder: "type a message", class: "chat-main__message-form__new-message__input-box__text"}
+        -# .chat-main__message-form__new-message__input-box__img
+        %label{class: "chat-main__message-form__new-message__input-box__image"}
+          = icon('far', 'image')
+          %input{type: "file"}
+      %input{type: "submit", value: "Send", class: "chat-main__message-form__new-message__submit-btn"}
