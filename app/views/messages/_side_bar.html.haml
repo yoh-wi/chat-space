@@ -2,14 +2,14 @@
   .chat-side__user
     .chat-side__user__top-items
       .chat-side__user__top-items__name
-        abcd
+        = current_user.name
       %ul.chat-side__user__top-items__icons
         %li
-          = link_to "#", class: "icon" do
-            = icon('fas', 'edit')
+          = link_to edit_user_path(current_user) do
+            = icon('fas', 'edit', class: 'icon')
         %li
-          = link_to "#", class: "icon" do
-            = icon('fas', 'cog')
+          = link_to "#" do
+            = icon('fas', 'cog', class: 'icon')
   .chat-side__group-list
     .chat-side__group-list__group
       .chat-side__group-list__group__group-name
