@@ -30,15 +30,15 @@
     background-color: #2f3e51;
     padding: 20px;
     &__group {
-      color: #ffffff;
-      // font-weight: bold;
       margin-bottom: 40px;
       &__group-name {
         font-size: 16px;
+        color: #ffffff;
         margin-bottom: 5px;
       }
       &__latest-message {
         font-size: 11px;
+        color: #ffffff;
       }
     }
   }
