@@ -2,33 +2,34 @@
   .chat-main__header
     .chat-main__header__left-box
       .chat-main__header__left-box__current-group
-        Aグループ
+        = @group.name
       .chat-main__header__left-box__member-list
-        メンバーたち
-    .chat-main__header__edit-btn
-      Edit
+        Member : 
+        - @group.users.each do |user|
+          = user.name
+      
+    = link_to "Edit", edit_group_path(@group.id), class: "chat-main__header__edit-btn"
+      
   .chat-main__message-list
-    .chat-main__message-list__message
-      .chat-main__message-list__message__upper-info
-        .chat-main__message-list__message__upper-info__name
-          abcd
-        .chat-main__message-list__message__upper-info__date
-          2019/11/29 1:30:00
-      .chat-main__message-list__message__text
-        メッセージあります
-    .chat-main__message-list__message
-      .chat-main__message-list__message__upper-info
-        .chat-main__message-list__message__upper-info__name
-          abcd
-        .chat-main__message-list__message__upper-info__date
-          2019/11/29 1:30:00
-      .chat-main__message-list__message__text
-        メッセージください
+    = render @messages
   .chat-main__message-form
-    .chat-main__message-form__new-message
-      .chat-main__message-form__new-message__input-box
-        %input{placeholder: "type a message", class: "chat-main__message-form__new-message__input-box__text"}
-        %label{class: "chat-main__message-form__new-message__input-box__image"}
-          = icon('far', 'image')
-          %input{type: "file"}
-      %input{type: "submit", value: "Send", class: "chat-main__message-form__new-message__submit-btn"}
+    
+    = form_for [@group, @message], html: {class: "chat-main__message-form__input-box"} do |f|
+      = f.text_field :content, class: "chat-main__message-form__input-box__text", placeholder: "type a message"
+      .chat-main__message-form__input-box__image
+      = f.label :image do
+        = icon('far', 'image', class: 'img-icon')
+        = f.file_field :image, class: 'hidden'
+      = f.submit 'Send', class: "chat-main__message-form__input-box__submit-btn"
+
+      -# %input{placeholder: "type a message", class: "chat-main__message-form__input-box__text"}
+      -# %label{class: "chat-main__message-form__input-box__image"}
+        -# = icon('far', 'image')
+        -# %input{type: "file"}
+      -# %input{type: "submit", value: "Send", class: "chat-main__message-form__input-box__submit-btn"}
+
+
+
+
+      
+        

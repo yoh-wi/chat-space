@@ -1,7 +1,7 @@
 .chat-side
   .chat-side__user
     .chat-side__user__top-items
-      .chat-side__user__top-items__name
+      %h3.chat-side__user__top-items__name
         = current_user.name
       %ul.chat-side__user__top-items__icons
         %li
@@ -17,4 +17,4 @@
           .chat-side__group-list__group__group-name
             = group.name
           .chat-side__group-list__group__latest-message
-            メッセージはありません
+            = group.show_last_message
