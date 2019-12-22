@@ -59,7 +59,7 @@ $(function() {
       };
     })  
     .fail(function() {
-      console.log('error');
+      alert('自動更新ができませんでした。再読み込みしてください。');
     });
   };  
 
