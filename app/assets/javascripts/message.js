@@ -1,11 +1,25 @@
 $(function() {
-  function buildHTML(message){
-    if (message.image.url != null) {
-      var addImage = `<img src="${message.image.url}", class="chat-main__message-list__message__lower-info__image", width="200">` 
-    } else {
+  $(document).ready(function() {
+    $('.chat-main__message-list').animate({ scrollTop: $('.chat-main__message-list')[0].scrollHeight}, 100);
+  });
+
+  var buildHTML = function(message) {
+    if (message.content && message.image) {
+      var addContent = `<p class="chat-main__message-list__message__lower-info__content">
+                          ${message.content}
+                        </p>`
+      var addImage = `<img src="${message.image}", class="chat-main__message-list__message__lower-info__image", width="200">` 
+    } else if (message.content) {
+      var addContent = `<p class="chat-main__message-list__message__lower-info__content">
+                          ${message.content}
+                        </p>`
       var addImage = ''
-    }
-      var html = `<div class="chat-main__message-list__message">
+    } else if (message.image) {
+      var addContent = ''
+      var addImage = `<img src="${message.image}", class="chat-main__message-list__message__lower-info__image", width="200">` 
+    } 
+    
+      var html = `<div class="chat-main__message-list__message", data-message-id="${message.id}">
                     <div class="chat-main__message-list__message__upper-info">
                       <div class="chat-main__message-list__message__upper-info__name">
                         ${message.user_name}
@@ -15,15 +29,35 @@ $(function() {
                       </div>
                     </div>
                       <div class="chat-main__message-list__message__lower-info">
-                      <p class="chat-main__message-list__message__lower-info__content">
-                        ${message.content}
-                      </p>
+                      ${addContent}
                       ${addImage}  
                     </div>
                   </div>`
     return html; 
   }
 
+  var reloadMessages = function() {
+    last_message_id = $('.chat-main__message-list__message:last').data("message-id");
+    $.ajax({
+      url: "api/messages",
+      type: 'get',
+      dataType: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages) {
+      if (messages.length !== 0) {
+        var insertHTML = ''
+        $.each(messages, function(i, message) {
+          insertHTML += buildHTML(message)
+          $('.chat-main__message-list').append(insertHTML);
+          $('.chat-main__message-list').animate({ scrollTop: $('.chat-main__message-list')[0].scrollHeight});
+        });
+      };
+    })  
+    .fail(function() {
+      alert('自動更新ができませんでした。再読み込みしてください。');
+    });
+  };  
 
   $('.chat-main__footer__message-form').on('submit', function(e) {
     e.preventDefault();
@@ -40,14 +74,16 @@ $(function() {
     .done(function(data){
       var html = buildHTML(data);
       $('.chat-main__message-list').append(html);
-      $('.chat-main__message-list').animate({ scrollTop: $('.chat-main__message-list')[0].scrollHeight});
+      $('.chat-main__message-list').animate({ scrollTop: $('.chat-main__message-list')[0].scrollHeight}, 'fast');
       $('.chat-main__footer__message-form')[0].reset();
-      $('.chat-main__footer__message-form__submit-btn').prop('disabled', false);
-      
+      $('.chat-main__footer__message-form__submit-btn').prop('disabled', false);  
     })
     .fail(function() {
       alert("メッセージ送信に失敗しました");
       $('.chat-main__footer__message-form__submit-btn').prop('disabled', false);
-    })
+    });
   });
+  if (document.location.href.match(/\/groups\/\d+\/messages/)) {
+    setInterval(reloadMessages, 7000)
+  } 
 });
