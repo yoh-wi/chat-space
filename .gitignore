@@ -19,3 +19,4 @@
 public/uploads/*
 
 'carrierwave'
+config/secrets.yml
